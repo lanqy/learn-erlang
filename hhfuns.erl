@@ -1,4 +1,4 @@
-%% Higher Order Functions
+%% 高阶函数
 
 -module(hhfuns).
 -compile(export_all).
@@ -40,7 +40,7 @@ a() ->
 b(F) ->
     "a/0's password is "++F().
 
-%% only keep even numbers
+%% 只保留偶数
 
 even(L) -> lists:reverse(even(L, [])).
 
@@ -50,7 +50,7 @@ even([H|T], Acc) when H rem 2 == 0 ->
 even([_|T], Acc) ->
     even(T, Acc).
 
-%% only keep men older than 60
+%% 只保留年龄对于 60 的男性
 
 old_men(L) -> lists:reverse(old_men(L, [])).
 
@@ -69,15 +69,24 @@ filter(Pred, [H|T], Acc) ->
         false -> filter(Pred, T, Acc)
     end.
 
-%% find the maximum of a list
+%% 找出列表中的最大值
 max([H|T]) -> max2(T, H).
 
 max2([], Max) -> Max;
 max2([H|T], Max) when H > Max -> max2(T, H);
 max2([_|T], Max) -> max2(T, Max).
 
-%% find the minimum of a list
+%% 找出列表中的最大值
 min([H|T]) -> min2(T, H).
 min2([], Min) -> Min;
 min2([H|T], Min) when H < Min -> min2(T, H);
 min2([_|T], Min) -> min2(T, Min).
+
+%%  计算列表所有元素的和
+sum(L) -> sum(L, 0).
+
+sum([], Sum) -> Sum;
+sum([H|T], Sum) -> sum(T, H + Sum).
+
+fold(_, Start, []) -> Start;
+fold(F, Start, [H|T]) -> fold(F, F(H, Start), T).
