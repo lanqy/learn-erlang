@@ -50,7 +50,7 @@ even([H|T], Acc) when H rem 2 == 0 ->
 even([_|T], Acc) ->
     even(T, Acc).
 
-%% 只保留年龄对于 60 的男性
+%% 只保留年龄大于 60 的男性
 
 old_men(L) -> lists:reverse(old_men(L, [])).
 
